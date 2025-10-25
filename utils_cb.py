@@ -527,3 +527,24 @@ def hill_equation(x, Bmax, EC50, n):
     n = Hill coefficient (cooperativity)
     """
     return (Bmax * x**n) / (EC50**n + x**n)
+
+
+# ---------------------------
+# Binding equations
+# ---------------------------
+
+def hill_equation(L, Bmax, Kd, n):
+    """Hill equation (no background)."""
+    return Bmax * np.power(L, n) / (np.power(Kd, n) + np.power(L, n))
+
+def hyperbolic_binding(L, Bmax, Kd):
+    """Hyperbolic binding (no background)."""
+    return Bmax * L / (Kd + L)
+
+def hill_equation_with_bg(L, Bmax, Kd, n, Background):
+    """Hill equation with background term."""
+    return Background + Bmax * np.power(L, n) / (np.power(Kd, n) + np.power(L, n))
+
+def hyperbolic_binding_with_bg(L, Bmax, Kd, Background):
+    """Hyperbolic binding with background term."""
+    return Background + Bmax * L / (Kd + L)
